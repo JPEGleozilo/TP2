@@ -117,7 +117,7 @@ if (j < k) {
 
 
 //8 -Mostrar los multiplos de 2 y 5 menores a 100.
-let max=100
+const max=100
 let acum2= ""
 let acum5= ""
 for (let i=1; i<100; i++) {
@@ -141,3 +141,110 @@ for (let i=1; i<100; i++) {
     }
 }
 console.log ("Los múltiplos de 5 menores a 100 son: " + acum5)
+
+
+//9 -Obtener la suma de los elementos de un array.
+let lista = [1, 2, 3, 4, 5, 6]
+let sumalista = 0
+for (i = 0; i < lista.length; i++) {
+    sumalista = (sumalista + lista[i]) 
+}
+console.log ("La suma de los " + lista.length + " elementos de la lista es igual a " + sumalista)
+
+
+//10 -Sumar solo los elementos pares de un array.
+let listapar = [1, 2, 3, 4, 5, 6]
+let sumalistapar = 0
+for (i = 0; i < listapar.length; i++) {
+    if (listapar[i] % 2 === 0) {
+    sumalistapar = (sumalistapar + listapar[i])
+    }
+}
+console.log ("La suma de los pares es igual a " + sumalistapar)
+
+
+//11 -Ingresar una palabra e identificar la letras distintas y sus repeticiones.
+let pala = "pala";
+let conteo = {};
+
+for (let i = 0; i < pala.length; i++) {
+    let letra = pala[i];
+    if(conteo[letra]){
+        conteo[letra]++
+    }else{
+        conteo[letra] = 1
+    }
+    console.log (conteo)
+}
+
+for (let letra in conteo) {
+    console.log(letra + ":" + conteo[letra]);
+}
+
+
+//12. -Crear un objeto literal con las siguientes propiedades: nombre, sexo biológico y edad. 
+// Agregar varios elementos a una lista. Obtener el promedio de edad, el nombre de la mujer con mayor edad, 
+// el nombre del hombre con menor edad, el promedio de edad de las mujeres.
+
+let personas = [
+//  [0]
+    {
+        nombre: "charly",
+        sexo: "masculino",
+        edad: 12
+    },
+//  [1]
+    {
+        nombre: "jesica",
+        sexo: "femenino",
+        edad: 4
+    },
+//  [2]
+    {
+        nombre: "carmela",
+        sexo: "femenino",
+        edad: 127,
+    },
+//  [3]
+    {
+        nombre: "bromelio",
+        sexo: "masculino",
+        edad: 54
+    },
+//  [4]
+    {
+        nombre: "felipa",
+        sexo: "femenino",
+        edad: 82
+    },
+//  [5]
+    {
+        nombre: "nicolás",
+        sexo: "masculino",
+        edad: 1382
+    }
+]
+var minM = -1
+var maxF = -1
+let prom = 0
+let promF = 0
+for (let i = 0; i < personas.length; i++) {
+    let actual = personas[i]
+    if (personas[i].sexo == "masculino") {
+        if (minM < 0) {
+            var minM = actual
+        }else if (actual < minM){
+            var minM = actual
+        }
+    }
+    if (personas[i].sexo == "femenino") {
+        if (maxF < 0) {
+            var maxF = actual
+        }else if (maxF < actual) {
+            var maxF = actual
+        }
+        //promedio de edad femenino
+    }
+    //promedio de edad general
+}
+console.log (minM , maxF)
