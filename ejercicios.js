@@ -174,7 +174,6 @@ for (let i = 0; i < pala.length; i++) {
     }else{
         conteo[letra] = 1
     }
-    console.log (conteo)
 }
 
 for (let letra in conteo) {
@@ -186,12 +185,12 @@ for (let letra in conteo) {
 // Agregar varios elementos a una lista. Obtener el promedio de edad, el nombre de la mujer con mayor edad, 
 // el nombre del hombre con menor edad, el promedio de edad de las mujeres.
 
-let personas = [
+var personas = [
 //  [0]
     {
         nombre: "charly",
         sexo: "masculino",
-        edad: 12
+        edad: 56
     },
 //  [1]
     {
@@ -209,7 +208,7 @@ let personas = [
     {
         nombre: "bromelio",
         sexo: "masculino",
-        edad: 54
+        edad: 2
     },
 //  [4]
     {
@@ -223,28 +222,196 @@ let personas = [
         sexo: "masculino",
         edad: 1382
     }
-]
-var minM = -1
-var maxF = -1
-let prom = 0
-let promF = 0
-for (let i = 0; i < personas.length; i++) {
-    let actual = personas[i]
-    if (personas[i].sexo == "masculino") {
-        if (minM < 0) {
-            var minM = actual
-        }else if (actual < minM){
-            var minM = actual
-        }
-    }
-    if (personas[i].sexo == "femenino") {
-        if (maxF < 0) {
-            var maxF = actual
-        }else if (maxF < actual) {
-            var maxF = actual
-        }
-        //promedio de edad femenino
-    }
-    //promedio de edad general
+];
+var minM = {
+    nombre: " ",
+    sexo: " ",
+    edad: -1
 }
-console.log (minM , maxF)
+var maxF = {
+    nombre: " ",
+    sexo: " ",
+    edad: -1
+}
+var prom = 0
+var promF = 0
+var femtot = 0
+var tot = 0
+var edadtot = 0
+for (let i = 0; i < personas.length; i++) {
+    let actual = personas[i];
+    if (personas[i].sexo == "masculino") {
+        if (minM.edad < 0) {
+            var minM = actual;
+        }else if (actual.edad < minM.edad){
+            var minM = actual;
+        };
+    };
+    if (personas[i].sexo == "femenino") {
+        if (maxF.edad < 0) {
+            var maxF = actual;
+        }else if (actual.edad > maxF.edad) {
+            var maxF = actual;
+        };
+        var femtot = femtot + 1;
+        var promF = promF + actual.edad;
+        var promF = promF / femtot;
+    };
+    var tot = tot + 1;
+    var edadtot = edadtot + actual.edad;
+    var prom = edadtot / tot;
+}
+console.log ("El promedio general de edad es " + prom + " entre " + tot + " personas.");
+console.log ("La mujer con mayor edad es " + maxF.nombre + ", con " + maxF.edad + " años.");
+console.log ("El hombre con menor edad es " + minM.nombre + ", con " + minM.edad + " años.");
+console.log("Por último, el promedio de edad entre las mujeres es de " + promF + " entre " + femtot + " mujeres");
+
+
+//13. -Para el ejercicio anterior, generar una funcion para cada uno de los requerimientos.
+var personas = [
+    //  [0]
+        {
+            nombre: "charly",
+            sexo: "masculino",
+            edad: 56
+        },
+    //  [1]
+        {
+            nombre: "jesica",
+            sexo: "femenino",
+            edad: 4
+        },
+    //  [2]
+        {
+            nombre: "carmela",
+            sexo: "femenino",
+            edad: 127,
+        },
+    //  [3]
+        {
+            nombre: "bromelio",
+            sexo: "masculino",
+            edad: 2
+        },
+    //  [4]
+        {
+            nombre: "felipa",
+            sexo: "femenino",
+            edad: 82
+        },
+    //  [5]
+        {
+            nombre: "nicolás",
+            sexo: "masculino",
+            edad: 1382
+        }
+];
+    
+var actual = {
+        nombre: " ",
+        sexo: " ",
+        edad: 0
+} 
+    
+    function MINM (resultado) {
+        var minM = {
+            nombre: " ",
+            sexo: " ",
+            edad: -1
+        };
+        for (let i = 0; i < personas.length; i++) {
+            let actual = personas[i];
+            if (personas[i].sexo == "masculino") {
+                if (minM.edad < 0) {
+                    var minM = actual;
+                }else if (actual.edad < minM.edad){
+                    var minM = { nombre: actual.nombre, edad: actual.edad };
+                };
+            };
+        };
+        return (minM);
+    };
+    function MAXF (resultado) {
+        var maxF = {
+            nombre: " ",
+            sexo: " ",
+            edad: -1
+        };
+            for (let i = 0; i < personas.length; i++) {
+                let actual = personas[i];
+                if (personas[i].sexo == "femenino") {
+                    if (maxF.edad < 0) {
+                        var maxF = actual;
+                    }else if (actual.edad > maxF.edad) {
+                        var maxF = { nombre: actual.nombre, edad: actual.edad };
+                };
+            }
+        }
+        return (maxF)
+    }
+    function PROM (resultado) {
+        var prom = 0
+        var tot = 0
+        var edadtot = 0
+        for (let i = 0; i < personas.length; i++) {
+            let actual = personas[i];
+            var tot = tot + 1;
+            var edadtot = edadtot + actual.edad;
+            var prom = edadtot / tot;
+        };
+        return (prom)
+    }
+    function PROMF (resultado) {
+        var actual = {
+            nombre: " ",
+            sexo: " ",
+            edad: 0
+        } 
+        var promF = 0
+        var sumaF = 0
+        var femtot = 0
+        for (let i = 0; i < personas.length; i++) {
+            if (personas[i].sexo == "femenino") {
+                var actual = personas[i];
+            }
+                var femtot = femtot + 1;
+                var sumaF = sumaF + actual.edad;
+                var promF = sumaF / femtot;
+            };
+        return (promF)
+    }
+    var minM = MINM()
+    var maxF = MAXF()
+    var prom = PROM()
+    var promF= PROMF()
+
+    console.log ("El promedio general de edad es " + prom + " entre " + tot + " personas.");
+    console.log ("La mujer con mayor edad es " + maxF.nombre + ", con " + maxF.edad + " años.");
+    console.log ("El hombre con menor edad es " + minM.nombre + ", con " + minM.edad + " años.");
+    console.log("Por último, el promedio de edad entre las mujeres es de " + promF + " entre " + femtot + " mujeres");
+
+
+    //14. -Crear una funcion que reciba 3 parametros: minimo, maximo y divisor.
+    // Devolver una lista con los divisores del numero ingresado.
+    
+    //Asumiendo que la consigna solicita: una lista de divisores y, 
+    //por separado, el valor máximo y el mínimo
+    let l = 3
+    let min14 = 1
+    let max14 = 0
+    var acum14 = 0
+    for (i = 1; i <= l; i++) {
+        console.log (i)
+        if (i % l === 0) {
+        if (i > max14) {
+            max14 = i
+        }
+    var acum14 = acum14 + ", " + i
+    }
+    if (acum14 === 0) {
+        acum14 = i
+    }
+}
+console.log ("Máximo divisor: " + max14)
+console.log ("Mínimo divisor: " + min14)
+console.log ("Divisores: " + acum14)
